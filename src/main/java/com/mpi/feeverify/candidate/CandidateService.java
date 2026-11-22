@@ -59,6 +59,12 @@ public class CandidateService {
         return created;
     }
 
+    /** 登记外部构造的候选语句（如时态改写沙箱的缺陷候选），用于关联发布门禁轨道。 */
+    public Map<String, Object> createCustom(long registrationId, String type, String variant, String sql,
+                                            String compareMode, String note) {
+        return insert(registrationId, type, variant, sql, compareMode, List.of(), note);
+    }
+
     private Map<String, Object> insert(long registrationId, String type, String variant, String sql,
                                        String compareMode, List<String> requiredNull, String note) {
         Long id = jdbc.queryForObject(

@@ -5,7 +5,8 @@ for pid in $(/opt/jdk-25/bin/jps -l | grep -E 'FeeVerifyApplication|classworlds.
   kill "$pid" 2>/dev/null || true
 done
 sleep 3
-cd /workspace/71
+# 项目根目录 = 本脚本所在目录的上一级
+cd "$(dirname "$0")/.."
 nohup /opt/maven/bin/mvn spring-boot:run > /tmp/app.log 2>&1 &
 disown
 for i in $(seq 1 90); do

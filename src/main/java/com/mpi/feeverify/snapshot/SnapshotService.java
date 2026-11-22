@@ -18,9 +18,10 @@ import java.util.Map;
 @Service
 public class SnapshotService {
 
-    /** 纳入快照的业务基表。 */
+    /** 纳入快照的业务基表（org_date_version_map 为平台派生映射，随快照冻结以便 MAP 语义复验）。 */
     private static final List<String> BASE_TABLES = List.of(
-            "fee_detail", "dim_org", "dim_diagnosis", "dim_drug", "fee_daily_org", "fee_daily_org_stale");
+            "fee_detail", "dim_org", "dim_diagnosis", "dim_drug", "fee_daily_org", "fee_daily_org_stale",
+            "dim_org_version", "org_date_version_map");
 
     private final JdbcTemplate jdbc;
 
